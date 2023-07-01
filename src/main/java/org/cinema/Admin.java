@@ -14,7 +14,7 @@ class Admin {
     }
 
 
-    public admin(){
+    public void admin(){
 
     }
 
