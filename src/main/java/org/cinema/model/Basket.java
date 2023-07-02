@@ -11,6 +11,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 
 public class Basket {
+    private Long id;
     private String username;
     private Integer idTicket;
     private String filmName;

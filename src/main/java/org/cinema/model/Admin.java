@@ -11,6 +11,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 
 class Admin {
+    private Long id;
     protected String firstName;
     protected String lastName;
     protected String username;

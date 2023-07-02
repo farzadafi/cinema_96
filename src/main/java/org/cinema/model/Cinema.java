@@ -11,6 +11,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 
 public class Cinema {
+    private Long id;
     private String cinemaName;
     private String cinemaNumber;
     private String username;

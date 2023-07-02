@@ -13,6 +13,7 @@ import java.sql.Time;
 @ToString
 @SuperBuilder
 public class Ticket {
+    private Long id;
     private String cinemaName;
     private String filmName;
     private Date datetime;

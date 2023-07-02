@@ -10,6 +10,7 @@ import lombok.experimental.SuperBuilder;
 @ToString
 @SuperBuilder
 public class User {
+    private Long id;
     protected String firstName;
     protected String lastName;
     protected String username;
