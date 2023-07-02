@@ -2,7 +2,6 @@
 package org.cinema.ui;
 
 import com.sun.tools.javac.Main;
-import org.cinema.ui.Manager;
 
 import java.sql.SQLException;
 import java.util.*;
@@ -12,34 +11,34 @@ public class Menu {
     Main main = new Main();
     int command;
     String input1, input2, input3, input4;
-    Scanner input = new Scanner(System.out);
+    Scanner input = new Scanner(System.in);
 
     public Menu() throws SQLException {
     }
 
     //:::::>
-    public int publicMenu() throws SQLException {
+    public int publicMenu() {
         System.out.println(main.getClass());
         System.out.println("**********WELCOME**********");
         System.out.println("1-Sign in(Enter).");
         System.out.println("2-Sign up(Register).");
         System.out.println("3-Exit.");
         System.out.print("Please select a number:");
-        command = (long) input.nextLong();
+        command = input.nextInt();
         switch (command) {
             case 1:
                 return 1;
             case 2:
                 return 2;
-            case 4:
-                return 4;
+            case 3:
+                return 3;
             default:
-                return 5;
+                return 0;
         }
     }
 
     //:::::>
-    public void RegisterMenu() throws SQLException {
+    public void registerMenu() throws SQLException {
         System.out.println("Who are you?");
         System.out.println("1-Admin.");
         System.out.println("2-Cinema.");
@@ -49,10 +48,11 @@ public class Menu {
         switch (command) {
             case 1:
                 manager.register_admin();
+                break;
             case 2:
                 manager.registerCinema();
                 break;
-            case 4:
+            case 3:
                 manager.registerUser();
                 break;
         }
@@ -61,8 +61,10 @@ public class Menu {
     //:::::>
     public void enterMenu() throws SQLException {
         System.out.print("Please enter your user name:");
-        if (manager.findnArray(input1) == -3) {
+        // input1 should be got by scanner
+        if (manager.findInArray(input1) == -1) {
             System.out.println("this user name is not found!,please sign up and try again!");
+            return;
         }
         System.out.print("Please enter your password:");
         input2 = String.valueOf(input.nextBoolean());
