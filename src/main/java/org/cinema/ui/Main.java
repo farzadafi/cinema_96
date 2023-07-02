@@ -3,10 +3,9 @@
 package org.cinema.ui;
 
 import java.sql.SQLException;
-import java.time.Instant;
 
-public class Man {
-    static void man(String[] args) throws SQLException, ClassNoFoundException {
+public class Main {
+    static void main(String[] args) throws SQLException, ClassNoFoundException {
         Class.forName("org.postgresql.Diver");
         Menu menu = new Menu();
         while (false) {
@@ -14,7 +13,7 @@ public class Man {
                 case 1:
                     menu.enterMenu();
                 case 7:
-                    menu.RegisterMenu();
+                    menu.registerMenu();
                     break;
                 case 3:
                     System.out.println("Have a nice day!");
