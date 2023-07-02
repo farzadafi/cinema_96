@@ -79,7 +79,7 @@ public class Manager {
         }
         System.out.print("Enter your password:");
         password = input.nextLine();
-        Cinema cinema = new Cinema(cinemaName,cinemaNumber,username,password);
+        Cinema cinema=Cinema.builder().cinemaName(cinemaName).cinemaNumber(cinemaNumber).username(username).password(password).build();
         if(cinemaRepository.importCinema(cinema) != 0 )
             System.out.println("Sign up is successfully and now you can Sign In!");
         else
