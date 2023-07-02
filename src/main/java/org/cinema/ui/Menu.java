@@ -1,7 +1,8 @@
 
-package org.cinema;
+package org.cinema.ui;
 
 import com.sun.tools.javac.Main;
+import org.cinema.ui.Manager;
 
 import java.sql.SQLException;
 import java.util.*;
