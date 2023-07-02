@@ -1,6 +1,5 @@
 package org.cinema.repository;
 
-
 import org.cinema.model.Admin;
 
 import java.sql.Connection;
@@ -9,45 +8,48 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AdminRepository {
-        private Connection connection;
-
-
-    //::::>
-    public AdminRepository(Connection connection) throws SQLException {
+    private final Connection connection;
+    public AdminRepository(Connection connection) {
         this.connection = connection;
-        String createTable = "CREATE TABLE NOT EXIST Admin(firstName serial,lastName varchar(50),username varchar(50) not null, password varchar(50) )";
+    }
+
+    //::::>
+    public void createTable() throws SQLException {
+        String createTable = "CREATE TABLE IF NOT EXISTS Admin(id serial not null primary key,firstName varchar(50)," +
+                "lastName varchar(50),username varchar(50) not null, password varchar(50) not null )";
         PreparedStatement preparedStatement = connection.prepareStatement(createTable);
-        preparedStatement.execute();
+        preparedStatement.executeUpdate();
     }
 
+
+
     //::::>
-    public int import_admin(Admin admin) throws SQLException {
-        String importValue = "INSERT INTO Admin(firstName,lastName,username,password) VALUES (?, ?, ?)";
+    public int importAdmin(Admin admin) throws SQLException {
+        String importValue = "INSERT INTO Admin(firstName,lastName,username,password) VALUES (?, ?, ?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(importValue);
-        preparedStatement.setString(0,admin.firstName);
-        preparedStatement.setString(1,admin.lastName);
-        preparedStatement.setString(2,admin.username);
-        preparedStatement.setString(3,admin.password);
-        return preparedStatement.execute();
+        preparedStatement.setString(1, admin.getFirstName());
+        preparedStatement.setString(1, admin.getLastName());
+        preparedStatement.setString(2, admin.getUsername());
+        preparedStatement.setString(3, admin.getPassword());
+        return preparedStatement.executeUpdate();
     }
 
     //::::>
-    public String findAdmin(String username,String password) throws SQLException {
-        String findQuery = "SELECT % FROM Admi WHERE usernme = ? AND password = ? ";
+    public Admin findAdmin(String username, String password) throws SQLException {
+        Admin admin = new Admin();
+        String findQuery = "SELECT * FROM Admin WHERE username = ? AND password = ? ";
         PreparedStatement preparedStatement = connection.prepareStatement(findQuery);
-        preparedStatement.setString(1,username);
-        preparedStatement.setString(2,password);
+        preparedStatement.setString(1, username);
+        preparedStatement.setString(2, password);
         ResultSet resultSet = preparedStatement.executeQuery();
-        if(resultSet.next())
-            return resultSet.getString("username");
-        else
-            return "null";
+        while (resultSet.next()) {
+            admin.setFirstName(resultSet.getString("firstName"));
+            admin.setLastName(resultSet.getString("lastName"));
+            admin.setUsername(resultSet.getString("username"));
+            admin.setPassword(resultSet.getString("password"));
+        }
+        if (admin.getUsername() == null)
+            return null;
+        return admin;
     }
-
-
-
-
-
-
-
 }
