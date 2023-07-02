@@ -9,10 +9,6 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @ToString
 @SuperBuilder
-public class User {
-    private Long id;
-    protected String firstName;
-    protected String lastName;
-    protected String username;
-    protected String password;
+public class User extends Person{
+
 }

@@ -9,13 +9,7 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @ToString
 @SuperBuilder
-public class Admin {
-    private Long id;
-    protected String firstName;
-    protected String lastName;
-    protected String username;
-    protected String password;
-
+public class Admin extends Person {
     public void admin() {
 
     }
