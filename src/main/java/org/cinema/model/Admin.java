@@ -9,8 +9,7 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @ToString
 @SuperBuilder
-
-class Admin {
+public class Admin {
     private Long id;
     protected String firstName;
     protected String lastName;
