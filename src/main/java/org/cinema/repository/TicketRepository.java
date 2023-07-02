@@ -1,8 +1,10 @@
-package org.cinema;
+package org.cinema.repository;
+
+import org.cinema.ui.Manager;
+import org.cinema.model.Ticket;
 
 import java.sql.*;
 import java.util.Date;
-import java.util.Set;
 
 public class TicketRepository {
     private Connection connection;

@@ -1,4 +1,4 @@
-package org.cinema;
+package org.cinema.model;
 
 class Admin {
     protected String firstName;

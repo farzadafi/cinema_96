@@ -1,4 +1,7 @@
-package org.cinema;
+package org.cinema.ui;
+import org.cinema.model.*;
+import org.cinema.repository.*;
+
 import java.sql.*;
 import java.sql.Date;
 import java.util.*;

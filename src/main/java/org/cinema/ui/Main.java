@@ -1,6 +1,6 @@
 //In the name of God!
 
-package org.inema;
+package org.cinema.ui;
 
 import java.sql.SQLException;
 import java.time.Instant;
