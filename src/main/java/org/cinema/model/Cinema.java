@@ -3,6 +3,8 @@ package org.cinema.model;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -10,11 +12,10 @@ import lombok.experimental.SuperBuilder;
 @ToString
 @SuperBuilder
 
-public class Cinema {
-    private Long id;
+public class Cinema extends BaseEntity {
+
     private String cinemaName;
     private String cinemaNumber;
-    private String username;
-    private String password;
-    private int confirm;
+    private boolean confirm;
+    private List<Ticket>ticketList;
 }

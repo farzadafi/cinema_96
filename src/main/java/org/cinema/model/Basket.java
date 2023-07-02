@@ -3,6 +3,8 @@ package org.cinema.model;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -10,11 +12,8 @@ import lombok.experimental.SuperBuilder;
 @ToString
 @SuperBuilder
 
-public class Basket {
-    private Long id;
-    private String username;
-    private Integer idTicket;
-    private String filmName;
+public class Basket extends BaseEntity {
+    private List<Ticket>ticketList;
     private Integer number;
-    private Integer priceAll;
+    private double priceAll;
 }

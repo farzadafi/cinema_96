@@ -12,12 +12,13 @@ import java.sql.Time;
 @Setter
 @ToString
 @SuperBuilder
-public class Ticket {
-    private Long id;
-    private String cinemaName;
-    private String filmName;
+public class Ticket extends BaseEntity {
+
+    private Cinema cinema;
+    private Basket basket;
     private Date datetime;
-    private Time clock;
+    private String filmName;
+    // private Time clock;     i want use timeStamp
     private int numberTickets;
-    private int price;
+    private double price;
 }
