@@ -10,14 +10,18 @@ import java.sql.SQLException;
 public class BasketRepository {
     private Connection connection;
 
-    public BasketRepository(Connection connection) throws SQLException {
+    public BasketRepository(Connection connection) {
         this.connection = connection;
-        String createTable = " CREATE TABLE IF NOT EXISTS Bsket(serial id,username varchar(50) REFERENES UserTabl(username)," +
-                       "idTicke Integer REFERENCE TicketTable(id),filmName varchar(50),numberTicket Integer,priceAll Integer) ";
+    }
+
+    public void createTable() throws SQLException{
+        String createTable ="CREATE TABLE IF NOT EXISTS Basket (id serial primary key ," +
+                " CONSTRAINT username FOREIGN KEY(username) REFERENCES User (username)," +
+                " CONSTRAINT idTicket FOREIGN KEY(id) REFERENCES TicketTable(id),filmName varchar(50)," +
+                " numberTicket Integer,priceAll Integer)";
         PreparedStatement preparedStatement = connection.prepareStatement(createTable);
         preparedStatement.execute();
     }
-
     //::::>
     public int importTicket(Basket basket) throws SQLException {
         String importBasket = "INSERT INTO Basket (username,idTicket,filmName,numberTicket,priceall) VALUES (?, ?, ?, ?)";
