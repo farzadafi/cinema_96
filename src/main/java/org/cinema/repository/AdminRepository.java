@@ -8,13 +8,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AdminRepository {
-    private final Connection connection;
-    public AdminRepository(Connection connection) {
-        this.connection = connection;
-    }
+    private  Connection connection;
 
     //::::>
-    public void createTable() throws SQLException {
+    public void AdminRepository(Connection connectionn) throws SQLException {
+        this.connection=connectionn;
         String createTable = "CREATE TABLE IF NOT EXISTS Admin(id serial not null primary key,firstName varchar(50)," +
                 "lastName varchar(50),username varchar(50) not null, password varchar(50) not null )";
         PreparedStatement preparedStatement = connection.prepareStatement(createTable);
