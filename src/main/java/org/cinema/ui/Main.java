@@ -5,7 +5,7 @@ package org.cinema.ui;
 import java.sql.SQLException;
 
 public class Main {
-    static void main(String[] args) throws SQLException, ClassNotFoundException {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Class.forName("org.postgresql.Diver");
         Menu menu = new Menu();
         while (true) {
