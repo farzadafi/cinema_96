@@ -24,15 +24,17 @@ public class BasketRepository {
     }
     //::::>
     public int importTicket(Basket basket) throws SQLException {
-        String importBasket = "INSERT INTO Basket (username,idTicket,filmName,numberTicket,priceall) VALUES (?, ?, ?, ?)";
+        String importBasket = "INSERT INTO Basket (username,idTicket,filmName,numberTicket,priceAll) VALUES (?,?,?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(importBasket);
         preparedStatement.setString(1,basket.getUsername());
         preparedStatement.setInt(2,basket.getIdTicket());
         preparedStatement.setString(3,basket.getFilmName());
         preparedStatement.setInt(4,basket.getNumber());
-        preparedStatement.setInt(7,basket.getPriceAll());
-        return preparedStatement.execute();
+        preparedStatement.setInt(5,basket.getPriceAll());
+        return preparedStatement.executeUpdate();
     }
+
+    
 
     //::::>
     public void cancelTicket(Integer id) throws SQLException {
