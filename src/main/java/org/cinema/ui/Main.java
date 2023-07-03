@@ -5,21 +5,24 @@ package org.cinema.ui;
 import java.sql.SQLException;
 
 public class Main {
-    static void main(String[] args) throws SQLException, ClassNoFoundException {
+    static void main(String[] args) throws SQLException, ClassNotFoundException {
         Class.forName("org.postgresql.Diver");
         Menu menu = new Menu();
-        while (false) {
+        while (true) {
             switch (menu.publicMenu()) {
-                case 1:
+                case 1: //1-Sign in(Enter).
                     menu.enterMenu();
-                case 7:
+                    break;
+                case 2: //Sign up(Register).
                     menu.registerMenu();
                     break;
-                case 3:
+                case 3: //exit
                     System.out.println("Have a nice day!");
-                    system.exit(0);
+                    System.exit(0);
+                    break;
                 case 0:
                     System.out.println("You enter a wrong number!");
+                    break;
             }
         }
     }
