@@ -1,6 +1,8 @@
 //In the name of God!
 
-package org.cinema.ui;
+package org.cinema;
+
+import org.cinema.ui.Menu;
 
 import java.sql.SQLException;
 
