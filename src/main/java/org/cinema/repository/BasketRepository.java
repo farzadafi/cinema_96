@@ -12,8 +12,8 @@ public class BasketRepository {
 
     public BasketRepository(Connection connection) throws SQLException {
         this.connection = connection;
-        String createTable = " CREATE TABLE IF NOT EXISTS Bsket(serial id,username varchar(50) REFERENES UserTabl(username)," +
-                       "idTicke Integer REFERENCE TicketTable(id),filmName varchar(50),numberTicket Integer,priceAll Integer) ";
+        String createTable = " CREATE TABLE IF NOT EXISTS Bsket(serial id,username varchar(50) REFERENCES UserTabl(username)," +
+                       "idTicke Integer REFERENCES TicketTable(id),filmName varchar(50),numberTicket Integer,priceAll Integer) ";
         PreparedStatement preparedStatement = connection.prepareStatement(createTable);
         preparedStatement.execute();
     }
