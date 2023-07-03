@@ -10,10 +10,11 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@SuperBuilder
 
 public class Basket extends BaseEntity {
-    private List<Ticket>ticketList;
+    private String username;
+    private int idTicket;
+    private String filmName;
     private Integer number;
-    private double priceAll;
+    private int priceAll;
 }

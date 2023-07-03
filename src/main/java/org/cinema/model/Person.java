@@ -8,7 +8,6 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @Setter
 @ToString
-@SuperBuilder
 public class Person extends BaseEntity{
     protected String firstName;
     protected String lastName;

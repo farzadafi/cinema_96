@@ -10,12 +10,12 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@SuperBuilder
 
 public class Cinema extends BaseEntity {
 
     private String cinemaName;
     private String cinemaNumber;
-    private boolean confirm;
-    private List<Ticket>ticketList;
+    private String username;
+    private String password;
+    private int confirm;
 }
