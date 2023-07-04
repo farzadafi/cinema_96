@@ -11,7 +11,7 @@ public class AdminRepository {
     private  Connection connection;
 
     //::::>
-    public void AdminRepository(Connection connectionn) throws SQLException {
+    public AdminRepository(Connection connectionn) throws SQLException {
         this.connection=connectionn;
         String createTable = "CREATE TABLE IF NOT EXISTS Admin(id serial not null primary key,firstName varchar(50)," +
                 "lastName varchar(50),username varchar(50) not null, password varchar(50) not null )";
