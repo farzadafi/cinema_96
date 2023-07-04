@@ -13,11 +13,6 @@ public class TicketRepository {
     //::::>
     public TicketRepository(Connection connection) throws SQLException {
         this.connection = connection;
-        String createTable = "CREATE TABLE IF EXISTS TicketTable(id int PRIMARY KEY,cinemaName varchar(50),filmName varchar(50),datetime date,clock time,numberTicket int,price int,numberBuy int " +
-         ",CONSTRAIN fk_cinemaName FOREIGNKEY(cinemaName) REFERENCES Cinema (cinemaName))";
-        PreparedStatement preparedStatement = connection.prepareStatement(createTable);
-        System.out.println(manager.cinemaName);
-        preparedStatement.execute();
     }
 
     //::::>

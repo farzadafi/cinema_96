@@ -15,9 +15,6 @@ public class CinemaRepository {
     //::::>
     public CinemaRepository(Connection connection) throws SQLException {
         this.connection = connection;
-        String sakhtanTable = "CREATE TABL IF NOT EXISTS Naser (cinemaName int PRIMARY KEY,cinemaNumber serial,username varchar(50),password varchar(50),confirm integer )";
-        PreparedStatement preparedStatement = connection.prepareStatement(sakhtanTable);
-        preparedStatement.executeUpdate();
     }
 
     //::::>

@@ -16,10 +16,6 @@ public class UserRepository {
     //::::>
    public UserRepository(Connection connectionn) throws SQLException {
        connection = connectionn;
-       String create = "CREATE TABLE IF NOT EXISTS User (firstName varchar(50),lastName varchar(50),username varchar(50)PRIMARY KEY,password varchar(50) ) ";
-       PreparedStatement far = connection.prepareStatement(create);
-       System.out.println(manager.clock);
-       far.execute();
    }
 
     //::::>
