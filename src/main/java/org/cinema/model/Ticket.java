@@ -1,7 +1,7 @@
 package org.cinema.model;
 
 import lombok.*;
-import lombok.experimental.SuperBuilder;
+import org.cinema.base.entity.BaseEntity;
 
 import java.sql.Date;
 import java.sql.Time;

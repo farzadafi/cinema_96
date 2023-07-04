@@ -3,6 +3,7 @@ import org.cinema.model.*;
 import org.cinema.repository.*;
 import org.cinema.util.ApplicationContext;
 
+
 import java.sql.*;
 import java.sql.Date;
 import java.util.*;
@@ -25,6 +26,14 @@ public class Manager {
     public Manager() throws SQLException {
     }
 
+    public String getCinemaName() {
+        return cinemaName;
+    }
+
+    public String getClock (){
+        return clock;
+    }
+
     //::::>
     public void register_admin() throws SQLException {
         System.out.print("Please enter your first name:");
@@ -45,8 +54,8 @@ public class Manager {
         }
         System.out.print("Enter your password:");
         password = input.nextLine();
-        Admin admin = new Admin("naser", "naseri", "naseri1", "غلام");
-        int result =  adminRepository.import_admin(admin);
+        Admin admin = new Admin(firstName,lastName,username,password);
+        int result =  adminRepository.importAdmin(admin);
         if(result != 0 )
             System.out.println("Sign up is successfully and now you can Sign In!");
         else
@@ -79,7 +88,7 @@ public class Manager {
         }
         System.out.print("Enter your password:");
         password = input.nextLine();
-        Cinema cinema=Cinema.builder().cinemaName(cinemaName).cinemaNumber(cinemaNumber).username(username).password(password).build();
+        Cinema cinema = new Cinema.CinemaBuilder().cinemaNameSet(cinemaName).cinemaNumberSet(cinemaNumber).usernameSet(username).passwordSet(password).build();
         if(cinemaRepository.importCinema(cinema) != 0 )
             System.out.println("Sign up is successfully and now you can Sign In!");
         else
@@ -92,7 +101,7 @@ public class Manager {
         firstName = input.nextLine();
         System.out.print("Enter your last name:");
         lastName = input.nextLine();
-        while(false){
+        while(true){
             System.out.print("Enter your user name:");
             username = input.nextLine();
             if(findInArray(username) != -1 )
@@ -114,9 +123,10 @@ public class Manager {
 
     //::::>
     public int findInArray(String username){
-        for(int i=0;i<emptyHomeIndex;i++)
+        for(int i=0;i<emptyHomeIndex;i++){
             if(usernameArray[i].equals(username))
                 return i;
+        }
             return -1;
     }
 
@@ -289,7 +299,7 @@ public class Manager {
             String[] array =off.split(",");
             int mountPercentage = Integer.parseInt(array[1]);
             double finalPercentage = (100.0 + mountPercentage ) * 100;
-            return (long) ((number / price) * finalPercentage);
+            return (int) ((number / price) * finalPercentage);
 
         }
 
