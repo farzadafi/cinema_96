@@ -26,9 +26,9 @@ public class AdminRepository {
         String importValue = "INSERT INTO Admin(firstName,lastName,username,password) VALUES (?, ?, ?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(importValue);
         preparedStatement.setString(1, admin.getFirstName());
-        preparedStatement.setString(1, admin.getLastName());
-        preparedStatement.setString(2, admin.getUsername());
-        preparedStatement.setString(3, admin.getPassword());
+        preparedStatement.setString(2, admin.getLastName());
+        preparedStatement.setString(3, admin.getUsername());
+        preparedStatement.setString(4, admin.getPassword());
         return preparedStatement.executeUpdate();
     }
 

@@ -10,25 +10,31 @@ import java.sql.SQLException;
 public class BasketRepository {
     private Connection connection;
 
-    public BasketRepository(Connection connection) throws SQLException {
+    public BasketRepository(Connection connection) {
         this.connection = connection;
-        String createTable = " CREATE TABLE IF NOT EXISTS Bsket(serial id,username varchar(50) REFERENES UserTabl(username)," +
-                       "idTicke Integer REFERENCE TicketTable(id),filmName varchar(50),numberTicket Integer,priceAll Integer) ";
+    }
+
+    public void createTable() throws SQLException{
+        String createTable ="CREATE TABLE IF NOT EXISTS Basket (id serial primary key ," +
+                " CONSTRAINT username FOREIGN KEY(username) REFERENCES User (username)," +
+                " CONSTRAINT idTicket FOREIGN KEY(id) REFERENCES TicketTable(id),filmName varchar(50)," +
+                " numberTicket Integer,priceAll Integer)";
         PreparedStatement preparedStatement = connection.prepareStatement(createTable);
         preparedStatement.execute();
     }
-
     //::::>
     public int importTicket(Basket basket) throws SQLException {
-        String importBasket = "INSERT INTO Basket (username,idTicket,filmName,numberTicket,priceall) VALUES (?, ?, ?, ?)";
+        String importBasket = "INSERT INTO Basket (username,idTicket,filmName,numberTicket,priceAll) VALUES (?,?,?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(importBasket);
         preparedStatement.setString(1,basket.getUsername());
         preparedStatement.setInt(2,basket.getIdTicket());
         preparedStatement.setString(3,basket.getFilmName());
         preparedStatement.setInt(4,basket.getNumber());
-        preparedStatement.setInt(7,basket.getPriceAll());
-        return preparedStatement.execute();
+        preparedStatement.setInt(5,basket.getPriceAll());
+        return preparedStatement.executeUpdate();
     }
+
+    
 
     //::::>
     public void cancelTicket(Integer id) throws SQLException {
