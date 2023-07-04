@@ -1,4 +1,4 @@
-package org.cinema.model;
+package org.cinema.base.entity;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
