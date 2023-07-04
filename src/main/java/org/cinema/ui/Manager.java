@@ -1,6 +1,7 @@
 package org.cinema.ui;
 import org.cinema.model.*;
 import org.cinema.repository.*;
+import org.cinema.util.ApplicationContext;
 
 
 import java.sql.*;
@@ -8,23 +9,13 @@ import java.sql.Date;
 import java.util.*;
 
 public class Manager {
-    Connection connection = DriverManager.getConnection("jdc:postgresql:/localhost:5433/postgres" , "postgres" , "ناصر هم دوماد اکبر");
-    UserRepository userRepository = new UserRepository(connection);
-    AdminRepository adminRepository = new AdminRepository(connection);
-    CinemaRepository cinemaRepository = new CinemaRepository(connection);
-    TicketRepository ticketRepository = new TicketRepository(connection);
-    BasketRepository basketRepository = new BasketRepository(connection);
-    Scanner input = new Scanner(System.in);
-    String input1;
-    String firstName;
-    String lastName;
-    String username;
-    String password;
-    String cinemaName;
-    String cinemaNumber;
-    String filmName;
-    String timeDate;
-    String clock;
+    UserRepository userRepository = ApplicationContext.userRepository;
+    AdminRepository adminRepository = ApplicationContext.adminRepository;
+    CinemaRepository cinemaRepository = ApplicationContext.cinemaRepository;
+    TicketRepository ticketRepository = ApplicationContext.ticketRepository;
+    BasketRepository basketRepository = ApplicationContext.basketRepository;
+    Scanner input = ApplicationContext.input;
+    String input1,firstName,lastName,username,password,cinemaName,cinemaNumber,filmName,timeDate,clock;
     int numberTickets,price,priceAll;
     String[] offCode = new String[1000];
     static Integer emptyHomeIndexOffCode = 0;
