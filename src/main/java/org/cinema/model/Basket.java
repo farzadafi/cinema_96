@@ -1,9 +1,7 @@
 package org.cinema.model;
 
 import lombok.*;
-import lombok.experimental.SuperBuilder;
-
-import java.util.List;
+import org.cinema.base.entity.BaseEntity;
 
 @AllArgsConstructor
 @NoArgsConstructor
