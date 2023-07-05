@@ -13,6 +13,11 @@ public class TicketRepository {
     //::::>
     public TicketRepository(Connection connection) throws SQLException {
         this.connection = connection;
+        String createTable = "CREATE TABLE IF EXISTS TicketTable(id int PRIMARY KEY,cinemaName varchar(50),filmName varchar(50),datetime date,clock time,numberTicket int,price int,numberBuy int " +
+         ",CONSTRAIN fk_cinemaName FOREIGNKEY(cinemaName) REFERENCES Cinema (cinemaName))";
+        PreparedStatement preparedStatement = connection.prepareStatement(createTable);
+        System.out.println(manager.getCinemaName());
+        preparedStatement.execute();
     }
 
     //::::>
@@ -89,7 +94,7 @@ public class TicketRepository {
         String searchName = " SELECT * FROM TicketTable WHERE filmName = ? AND datetime = ? ";
         PreparedStatement preparedStatement = connection.prepareStatement(searchName);
         preparedStatement.setString(1,filmName);
-        preparedStatement.setDate(2, timeDate);
+        preparedStatement.setDate(2, new java.sql.Date(timeDate.getTime()));
         ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next())
                 System.out.println("id=" + resultSet.getString("id")+ "    |cinemaName=" + resultSet.getString("cinemaName")

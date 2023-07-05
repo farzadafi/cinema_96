@@ -16,16 +16,20 @@ public class UserRepository {
     //::::>
    public UserRepository(Connection connectionn) throws SQLException {
        connection = connectionn;
+       String create = "CREATE TABLE IF NOT EXISTS User (firstName varchar(50),lastName varchar(50),username varchar(50)PRIMARY KEY,password varchar(50) ) ";
+       PreparedStatement far = connection.prepareStatement(create);
+       System.out.println(manager.getClock());
+       far.execute();
    }
 
     //::::>
     public int importUser(User user) throws SQLException {
         String importValue = "INSERT INTO User (lastName,username,password) VALUES (?, ?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(importValue);
-        preparedStatement.setString(1,user.firstName);
-        preparedStatement.setString(2,user.lastName);
-        preparedStatement.setString(3,user.username);
-        preparedStatement.setString(4,user.password);
+        preparedStatement.setString(1, user.getFirstName());
+        preparedStatement.setString(2, user.getLastName());
+        preparedStatement.setString(3, user.getUsername());
+        preparedStatement.setString(4, user.getPassword());
         return preparedStatement.executeUpdate();
     }
 

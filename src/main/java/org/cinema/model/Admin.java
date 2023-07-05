@@ -1,16 +1,19 @@
 package org.cinema.model;
 
-import lombok.*;
-import lombok.experimental.SuperBuilder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 @ToString
 public class Admin extends Person {
-    public void admin() {
 
+    public Admin() {
+        super();
     }
 
+    public Admin(String firstname, String lastname, String username, String password) {
+        super(firstname,lastname,username,password);
+    }
 }
