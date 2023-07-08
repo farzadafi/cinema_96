@@ -7,15 +7,15 @@ import java.sql.*;
 import java.util.Date;
 
 public class TicketRepository {
-    private Connection connection;
-    private Manager manager = new Manager();
+    private final Connection CONNECTION;
 
     //::::>
-    public TicketRepository(Connection connection) throws SQLException {
-        this.connection = connection;
+    public TicketRepository(Connection CONNECTION) throws SQLException {
+        this.CONNECTION = CONNECTION;
         String createTable = "CREATE TABLE IF EXISTS TicketTable(id int PRIMARY KEY,cinemaName varchar(50),filmName varchar(50),datetime date,clock time,numberTicket int,price int,numberBuy int " +
          ",CONSTRAIN fk_cinemaName FOREIGNKEY(cinemaName) REFERENCES Cinema (cinemaName))";
-        PreparedStatement preparedStatement = connection.prepareStatement(createTable);
+        PreparedStatement preparedStatement = CONNECTION.prepareStatement(createTable);
+        Manager manager = new Manager();
         System.out.println(manager.getCinemaName());
         preparedStatement.execute();
     }
@@ -23,7 +23,7 @@ public class TicketRepository {
     //::::>
     public int importTicket(Ticket ticket) throws SQLException {
         String importTic = "INSERT INTO TicketTable(filmName,datetime,clock,numberTicket,price,numberBuy) VALUES (?, ?, ?, ?, ?, ?, ?) ";
-        PreparedStatement preparedStatement = connection.prepareStatement(importTic);
+        PreparedStatement preparedStatement = CONNECTION.prepareStatement(importTic);
         preparedStatement.setString(1,ticket.getCinemaName());
         preparedStatement.setString(2,ticket.getFilmName());
         preparedStatement.setDate(3,ticket.getDatetime());
@@ -37,7 +37,7 @@ public class TicketRepository {
     //::::>
     public void showCinemaTickets(String cinemaName) throws SQLException {
         String showCinema = "SELECT * FROM TicketTable WHERE cinemaName = 'reza' ";
-        PreparedStatement preparedStatement = connection.prepareStatement(showCinema);
+        PreparedStatement preparedStatement = CONNECTION.prepareStatement(showCinema);
         ResultSet resultSet = preparedStatement.executeQuery();
         while(resultSet.next())
             System.out.println("id=" + resultSet.getString("id")+ "    |cinemaName=" + resultSet.getString("cinemaName")
@@ -48,7 +48,7 @@ public class TicketRepository {
     //::::>
     public void delTicket(Integer id) throws SQLException {
         String del = "DELETE FROM TicketTable WHERE id = ? ";
-        PreparedStatement preparedStatement = connection.prepareStatement(del);
+        PreparedStatement preparedStatement = CONNECTION.prepareStatement(del);
         preparedStatement.setInt(1,id);
         preparedStatement.executeUpdate();
     }
@@ -56,7 +56,7 @@ public class TicketRepository {
     //::::>
     public Date returnDateTime(Integer id) throws SQLException {
         String dateTime = "SELECT datetime FROM TicketTable WHERE id = ?  AND ?";
-        PreparedStatement preparedStatement = connection.prepareStatement(dateTime);
+        PreparedStatement preparedStatement = CONNECTION.prepareStatement(dateTime);
         preparedStatement.setInt(1,id);
         preparedStatement.setInt(2,5);
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -69,7 +69,7 @@ public class TicketRepository {
 
     public Time returnClock(Integer id) throws SQLException {
         String clock = "SELECT clock FROM TicketTable WHERE id = ? ";
-        PreparedStatement preparedStatement = connection.prepareStatement(clock);
+        PreparedStatement preparedStatement = CONNECTION.prepareStatement(clock);
         preparedStatement.setInt(1,id);
         ResultSet resultSet = preparedStatement.executeQuery();
         if(resultSet.next()) {
@@ -81,7 +81,7 @@ public class TicketRepository {
     //::::>
     public void showAllTicket() throws SQLException {
         String show = "SELECT * FROM TicketTable ";
-        PreparedStatement preparedStatement = connection.prepareStatement(show);
+        PreparedStatement preparedStatement = CONNECTION.prepareStatement(show);
         ResultSet resultSet = preparedStatement.executeQuery();
         while(resultSet.next())
             System.out.println("id=" + resultSet.getString("id")+ "    |cinemaName=" + resultSet.getString("cinemaName")
@@ -92,7 +92,7 @@ public class TicketRepository {
     //::::>
     public void searchWithName(String filmName,Date timeDate) throws SQLException {
         String searchName = " SELECT * FROM TicketTable WHERE filmName = ? AND datetime = ? ";
-        PreparedStatement preparedStatement = connection.prepareStatement(searchName);
+        PreparedStatement preparedStatement = CONNECTION.prepareStatement(searchName);
         preparedStatement.setString(1,filmName);
         preparedStatement.setDate(2, new java.sql.Date(timeDate.getTime()));
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -108,7 +108,7 @@ public class TicketRepository {
     public String[] getTicketInformation(int id) throws SQLException {
         String[] resultArray = new String[0];
         String information = "SELECT * FROM TicketTable WHERE id = ? ";
-        PreparedStatement preparedStatement = connection.prepareStatement(information);
+        PreparedStatement preparedStatement = CONNECTION.prepareStatement(information);
         preparedStatement.setInt(1,id);
         ResultSet resultSet = preparedStatement.executeQuery();
         if(resultSet.next()){
@@ -124,7 +124,7 @@ public class TicketRepository {
     //::::>
     public int updateNumberOfTicket(int id,Integer number) throws SQLException {
         String updateNumberTicket = "UPDATE TicketTable SET numberTicket = ? WHERE id = ?  ";
-        PreparedStatement preparedStatement = connection.prepareStatement(updateNumberTicket);
+        PreparedStatement preparedStatement = CONNECTION.prepareStatement(updateNumberTicket);
         preparedStatement.setInt(1,number);
         preparedStatement.setInt(2,id);
         return preparedStatement.executeUpdate();
@@ -133,7 +133,7 @@ public class TicketRepository {
     //::::>
     public int allBuyTicket(int id) throws SQLException {
         String number = " SELECT * FROM TicketTable WHERE id = ? " ;
-        PreparedStatement preparedStatement = connection.prepareStatement(number);
+        PreparedStatement preparedStatement = CONNECTION.prepareStatement(number);
         preparedStatement.setInt(1,id);
         ResultSet resultSet = preparedStatement.executeQuery();
         return resultSet.getInt("numberBuy");
@@ -142,7 +142,7 @@ public class TicketRepository {
     //::::>
     public void updateNumberTicketBuy(int id,int number) throws SQLException {
         String updateNumber = " UPDATE TicketTable SET numberBu = ? WHERE id = ? ";
-        PreparedStatement preparedStatement = connection.prepareStatement(updateNumber);
+        PreparedStatement preparedStatement = CONNECTION.prepareStatement(updateNumber);
         preparedStatement.setInt(1,number);
         preparedStatement.setInt(2,id);
         preparedStatement.executeUpdate();
@@ -151,7 +151,7 @@ public class TicketRepository {
     //::::>
     public void showListHighPurchase(String cinemaName) throws SQLException {
         String show = "SELECT * FROM ticketTable WHERE cinemaName = ? ORDER BY numberBuy DESC" ;
-        PreparedStatement preparedStatement = connection.prepareStatement(show);
+        PreparedStatement preparedStatement = CONNECTION.prepareStatement(show);
         preparedStatement.setString(1,cinemaName);
         ResultSet resultSet = preparedStatement.executeQuery();
             System.out.println("id=" + resultSet.getString("id")+ "    |cinemaName=" + resultSet.getString("cinemaName")
