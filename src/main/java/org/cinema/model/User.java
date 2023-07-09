@@ -15,7 +15,7 @@ public class User extends Person{
         super(firstname,lastname,username,password);
     }
 
-    public User (String firstName,String lastName,String username,String password){
+/*    public User (String firstName,String lastName,String username,String password){
         super(firstName,lastName,username,password);
-    }
+    }*/
 }

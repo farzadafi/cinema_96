@@ -8,11 +8,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AdminRepository {
-    private  Connection connection;
+    private final Connection CONNECTION;
 
     //::::>
-    public AdminRepository(Connection connectionn) throws SQLException {
-        this.connection=connectionn;
+    public AdminRepository(Connection CONNECTION) throws SQLException {
+        this.CONNECTION = CONNECTION;
 
     }
 
@@ -21,7 +21,7 @@ public class AdminRepository {
     //::::>
     public int importAdmin(Admin admin) throws SQLException {
         String importValue = "INSERT INTO Admin(firstName,lastName,username,password) VALUES (?, ?, ?,?)";
-        PreparedStatement preparedStatement = connection.prepareStatement(importValue);
+        PreparedStatement preparedStatement = CONNECTION.prepareStatement(importValue);
         preparedStatement.setString(1, admin.getFirstName());
         preparedStatement.setString(2, admin.getLastName());
         preparedStatement.setString(3, admin.getUsername());
@@ -33,7 +33,7 @@ public class AdminRepository {
     public Admin findAdmin(String username, String password) throws SQLException {
         Admin admin = new Admin();
         String findQuery = "SELECT * FROM Admin WHERE username = ? AND password = ? ";
-        PreparedStatement preparedStatement = connection.prepareStatement(findQuery);
+        PreparedStatement preparedStatement = CONNECTION.prepareStatement(findQuery);
         preparedStatement.setString(1, username);
         preparedStatement.setString(2, password);
         ResultSet resultSet = preparedStatement.executeQuery();
