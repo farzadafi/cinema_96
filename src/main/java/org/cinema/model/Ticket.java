@@ -11,7 +11,7 @@ import java.sql.Time;
 @Getter
 @Setter
 @ToString
-public class Ticket extends BaseEntity {
+public class Ticket extends BaseEntity<Integer>{
 
     private String cinemaName;
     private String filmName;

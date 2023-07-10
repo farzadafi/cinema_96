@@ -9,7 +9,7 @@ import org.cinema.base.entity.BaseEntity;
 @Setter
 @ToString
 
-public class Cinema extends BaseEntity {
+public class Cinema extends BaseEntity<Integer> {
 
     private String cinemaName;
     private String cinemaNumber;

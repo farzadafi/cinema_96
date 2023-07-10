@@ -8,7 +8,7 @@ import org.cinema.base.entity.BaseEntity;
 @Getter
 @Setter
 @ToString
-public class Person extends BaseEntity {
+public class Person extends BaseEntity<Integer> {
     protected String firstName;
     protected String lastName;
     protected String username;
