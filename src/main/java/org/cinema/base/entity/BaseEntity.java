@@ -7,6 +7,8 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-public class BaseEntity {
+public class BaseEntity <id>{
     private Long id;
+
+
 }
