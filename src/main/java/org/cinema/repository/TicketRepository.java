@@ -12,8 +12,8 @@ public class TicketRepository {
     //::::>
     public TicketRepository(Connection CONNECTION) throws SQLException {
         this.CONNECTION = CONNECTION;
-        String createTable = "CREATE TABLE IF EXISTS TicketTable(id int PRIMARY KEY,cinemaName varchar(50),filmName varchar(50),datetime date,clock time,numberTicket int,price int,numberBuy int " +
-         ",CONSTRAIN fk_cinemaName FOREIGNKEY(cinemaName) REFERENCES Cinema (cinemaName))";
+        String createTable = "CREATE TABLE IF NOT EXISTS TicketTable( id int PRIMARY KEY, cinemaName varchar(50), filmName varchar(50), datetime date, clock time, numberTicket int,  price int,  numberBuy int ,\n" +
+                " FOREIGN KEY(cinemaName) REFERENCES cinema(cinema));";
         PreparedStatement preparedStatement = CONNECTION.prepareStatement(createTable);
         Manager manager = new Manager();
         System.out.println(manager.getCinemaName());

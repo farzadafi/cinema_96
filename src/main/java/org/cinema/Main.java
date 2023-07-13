@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        Class.forName("org.postgresql.Diver");
+//        Class.forName("org.postgresql.Diver");
         Menu menu = new Menu();
         while (true) {
             switch (menu.publicMenu()) {
