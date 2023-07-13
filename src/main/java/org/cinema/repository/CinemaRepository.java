@@ -64,7 +64,7 @@ public class CinemaRepository {
 
     //::::>
     public int hasCinema(String cinemaName) throws SQLException {
-        String has = "SELECT * FROM Cinema WHERE Cinemaname = ? ";
+        String has = "SELECT * FROM Cinema WHERE cinema = ? ";
         PreparedStatement preparedStatement = CONNECTION.prepareStatement(has);
         preparedStatement.setString(1,cinemaName);
         ResultSet resultSet = preparedStatement.executeQuery();
