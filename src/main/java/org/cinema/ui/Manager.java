@@ -68,7 +68,7 @@ public class Manager {
         {
             System.out.print("Please enter your Cinema name:");
             cinemaName = input.nextLine();
-            if(cinemaRepository.hasCinema(cinemaName) == 1)
+            if(cinemaRepository.hasCinema(cinemaName))
                 System.out.println("this cinema name is defined before,select another Name");
             else
                 break;
