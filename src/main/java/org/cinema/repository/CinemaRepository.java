@@ -63,12 +63,17 @@ public class CinemaRepository {
     }
 
     //::::>
-    public int hasCinema(String cinemaName) throws SQLException {
-        String has = "SELECT * FROM Cinema WHERE Cinemaname = ? ";
+    public boolean hasCinema(String cinemaName) throws SQLException {
+        String has = "SELECT * FROM Cinema WHERE cinema = ? ";
         PreparedStatement preparedStatement = CONNECTION.prepareStatement(has);
         preparedStatement.setString(1,cinemaName);
         ResultSet resultSet = preparedStatement.executeQuery();
-        return resultSet.getInt("first");
+        if (resultSet.next()){
+            return true;
+        }else {
+            return false;
+        }
+
     }
 
     //::::>
