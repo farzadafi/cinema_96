@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS person
 CREATE TABLE IF NOT EXISTS cinema
 (
     id            serial PRIMARY KEY NOT NULL,
-    cinema        int                NOT NULL,
+    cinema_name        varchar          unique NOT NULL ,
     cinema_number serial             NOT NULL,
     username      varchar(50)        NOT NULL,
     password      varchar(50)        NOT NULL,
@@ -39,3 +39,4 @@ CREATE TABLE IF NOT EXISTS basket
     ticket_id   Integer REFERENCES ticket (id),
     total_price Integer NOT NULL
 );
+

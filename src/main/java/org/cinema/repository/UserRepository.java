@@ -15,7 +15,7 @@ public class UserRepository {
     //::::>
    public UserRepository(Connection CONNECTION) throws SQLException {
        this.CONNECTION = CONNECTION;
-       String create = "CREATE TABLE IF NOT EXISTS User (firstName varchar(50),lastName varchar(50),username varchar(50)PRIMARY KEY,password varchar(50) ) ";
+       String create = "CREATE TABLE IF NOT EXISTS Users (firstName varchar(50),lastName varchar(50),username varchar(50)PRIMARY KEY,password varchar(50) ) ";
        PreparedStatement far = this.CONNECTION.prepareStatement(create);
        Manager manager = new Manager();
        System.out.println(manager.getClock());

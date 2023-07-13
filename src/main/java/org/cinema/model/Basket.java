@@ -9,7 +9,7 @@ import org.cinema.base.entity.BaseEntity;
 @Setter
 @ToString
 
-public class Basket extends BaseEntity {
+public class Basket extends BaseEntity<Integer> {
     private String username;
     private int idTicket;
     private String filmName;
